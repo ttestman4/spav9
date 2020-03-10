@@ -1,1 +1,38 @@
-<p>form-test works!</p>
+<form [formGroup]="personForm">
+    <mat-checkbox [checked]="resEnabled" (change)="updateForm()">Residence</mat-checkbox>
+    <mat-checkbox [checked]="offEnabled" (change)="offEnabled = !offEnabled">Office</mat-checkbox>
+    <mat-checkbox [checked]="gymEnabled" (change)="gymEnabled = !gymEnabled">Gym</mat-checkbox>
+    <mat-list>
+        <mat-list-item formGroupName="core">
+            <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>Person Name</mat-label>
+                <input matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+        </mat-list-item>
+        <mat-list-item formGroupName="residential" *ngIf="resEnabled">
+            <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>Residential Address</mat-label>
+                <input matInput placeholder="Residence" formControlName="resAdd">
+            </mat-form-field>
+        </mat-list-item>
+        <mat-list-item formGroupName="office" *ngIf="offEnabled">
+            <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>Office Address</mat-label>
+                <input matInput placeholder="Office" formControlName="offAdd">
+            </mat-form-field>
+        </mat-list-item>
+        <mat-list-item formGroupName="gym" *ngIf="gymEnabled">
+            <mat-form-field appearance="standard" floatLabel="always">
+                <mat-label>Gym Address</mat-label>
+                <input matInput placeholder="Gym" formControlName="gymAdd">
+            </mat-form-field>
+        </mat-list-item>
+    </mat-list>
+</form>
+<button mat-raised-button color="primary">Save</button>
+<button mat-raised-button color="accent">Reset</button>
+<button mat-raised-button color="warn">Cancel</button>
+<br />
+{{personForm.getRawValue() | json}} <br />
+{{personForm.status | json}}<br />
+{{personForm.pristine}}
