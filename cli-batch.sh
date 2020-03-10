@@ -1,0 +1,1 @@
+yarn ng g module FormTest --project=spa --route=childform --routing=true --dry-run -m app.module
